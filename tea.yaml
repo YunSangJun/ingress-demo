@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: tea
+  labels:
+    app: tea 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      containers:
+      - name: tea
+        image: yunsangjun/demo-tea
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
