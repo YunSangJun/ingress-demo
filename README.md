@@ -18,7 +18,7 @@ kubectl apply -f coffee-svc.yaml
 
 ## Ingress
 
-ingress controller에 따라 `ingress.yaml`에 annotations을 선언합니다.
+`ingress.yaml`에 rewrite annotations을 선언합니다. ingress controller 종류에 맞게 선택합니다.
 
 ```
 $ vi ingress.yaml
