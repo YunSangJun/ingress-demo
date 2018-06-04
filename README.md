@@ -76,5 +76,5 @@ $ kubectl apply -f ingress.yaml
 
     ```
     클라이언트 -> 서버
-    /coffee/latte   -> /latte
+    /others/latte   -> /latte
     ```
