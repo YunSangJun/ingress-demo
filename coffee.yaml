@@ -2,10 +2,11 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: coffee
+  namespace: '${ parameters.namespace }'
   labels:
     app: coffee 
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: coffee
