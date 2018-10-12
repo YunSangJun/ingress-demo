@@ -5,10 +5,9 @@ metadata:
     nginx.org/rewrites: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
     ingress.bluemix.net/rewrite-path: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
   name: cafe
-  namespace: '${ parameters.namespace }'
 spec:
   rules:
-  - host: '${ parameters.host }'
+  - host: cafe.example.com
     http:
       paths:
       - path: /tea

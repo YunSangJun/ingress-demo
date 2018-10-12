@@ -2,7 +2,6 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: tea
-  namespace: '${ parameters.namespace }'
   labels:
     app: tea 
 spec:
