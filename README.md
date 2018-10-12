@@ -1,22 +1,6 @@
 # Ingress Demo Application
 
-## Tea, Coffee 배포
-
-### Deployment
-
-```
-kubectl apply -f tea.yaml
-kubectl apply -f coffee.yaml
-```
-
-### Service
-
-```
-kubectl apply -f tea-svc.yaml
-kubectl apply -f coffee-svc.yaml
-```
-
-## Ingress
+## Edit ingress yaml
 
 - `metadata.annotation`의 rewrite annotations을 선언합니다. ingress controller 종류에 맞게 선택합니다.
 
@@ -34,12 +18,15 @@ spec:
   - host: cafe.example.com
 ```
 
-ingress를 배포합니다.
+## Deploy
+
+Demo Application을 배포합니다.
+
 ```
-$ kubectl apply -f ingress.yaml
+$ kubectl apply -f manifests
 ```
 
-## 확인하기
+## Confirm
 
 1. `cafe.example.com/tea`
 
