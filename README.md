@@ -18,7 +18,9 @@ kubectl apply -f coffee-svc.yaml
 
 ## Ingress
 
-`ingress.yaml`에 rewrite annotations을 선언합니다. ingress controller 종류에 맞게 선택합니다.
+- `metadata.annotation`의 rewrite annotations을 선언합니다. ingress controller 종류에 맞게 선택합니다.
+
+- 'spec.rules[0].host`를 환경에 맞게 수정합니다.
 
 ```
 $ vi ingress.yaml
@@ -26,6 +28,10 @@ metadata:
   annotations:
     #nginx.org/rewrites: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
     #ingress.bluemix.net/rewrite-path: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
+...
+spec:
+  rules:
+  - host: cafe.example.com
 ```
 
 ingress를 배포합니다.

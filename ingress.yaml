@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    nginx.org/rewrites: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
-    ingress.bluemix.net/rewrite-path: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
+    #nginx.org/rewrites: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
+    #ingress.bluemix.net/rewrite-path: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
   name: cafe
 spec:
   rules:
