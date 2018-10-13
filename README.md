@@ -10,8 +10,8 @@
 $ vi ingress.yaml
 metadata:
   annotations:
-    #nginx.org/rewrites: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
-    #ingress.bluemix.net/rewrite-path: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
+    #nginx.ingress.kubernetes.io/rewrite-target: /"
+    #ingress.bluemix.net/rewrite-path: "serviceName=tea rewrite=/;serviceName=coffee rewrite=/"
 ...
 spec:
   rules:
