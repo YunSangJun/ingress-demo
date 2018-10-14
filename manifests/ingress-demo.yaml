@@ -1,0 +1,105 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: coffee
+  namespace: '${ parameters.namespace }'
+  labels:
+    app: coffee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      containers:
+      - name: coffee
+        image: yunsangjun/demo-coffee
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee
+  namespace: '${ parameters.namespace }'
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: coffee
+
+---
+
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: tea
+  namespace: '${ parameters.namespace }'
+  labels:
+    app: tea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      containers:
+      - name: tea
+        image: yunsangjun/demo-tea
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tea
+  namespace: '${ parameters.namespace }'
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: tea
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.org/rewrites: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
+    ingress.bluemix.net/rewrite-path: "serviceName=tea rewrite=/tea;serviceName=coffee rewrite=/coffee"
+  name: cafe
+  namespace: '${ parameters.namespace }'
+spec:
+  rules:
+  - host: '${ parameters.host }'
+    http:
+      paths:
+      - path: /tea
+        backend:
+          serviceName: tea
+          servicePort: 80
+      - path: /others
+        backend:
+          serviceName: coffee
+          servicePort: 80
